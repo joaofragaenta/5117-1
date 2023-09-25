@@ -15,11 +15,12 @@ for island_index in range(len(islands)):
     vendas[island_index] = int(island_sales)
     total = total + int(island_sales)
 
-print(f"Total de vendas:\n{vendas}\n{total}")
+print(f"Total de vendas:\n{total}")
 
 
 #Média de vendas
 average = total / len(islands)
+print(f"Media: {average}")
 
 #Ilha(s) que venderam mais
 max = vendas[0]
@@ -33,6 +34,7 @@ for i in range(len(vendas)):
         max_islands.append(islands[i])
 
 print(f"Ilha(s) com mais vendas: {max_islands} com {max} vendas")
+
 
 #Acima da média
 above_average_islands = []
@@ -49,3 +51,25 @@ for i in range(len(vendas)):
         below_average_islands.append(islands[i])
 
 print(f"Ilha(s) abaixo da média de vendas: {below_average_islands}")
+
+
+
+#Ordenar islhas por vendas de forma crescente
+for i in range(len(islands)):
+    for i in range(len(islands)-i-1):
+        if i+1 < len(islands):
+            if(vendas[i] > vendas[i+1]):
+                vendas[i], vendas[i+1] = vendas[i+1], vendas[i]
+                islands[i], islands[i+1] = islands[i+1], islands[i]
+
+print("\n")
+print("Crescente:")
+for i in range(len(vendas)):
+    print(f"{islands[i]} com {vendas[i]}")
+
+print("\n")
+print("Decrescente:")
+for i in range(len(vendas)):
+    print(f"{islands[len(vendas)-1-i]} com {vendas[len(vendas)-1-i]}")
+
+
