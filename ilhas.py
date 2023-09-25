@@ -22,20 +22,6 @@ print(f"Total de vendas:\n{total}")
 average = total / len(islands)
 print(f"Media: {average}")
 
-#Ilha(s) que venderam mais
-max = vendas[0]
-max_islands = []
-for i in range(len(vendas)):
-    if vendas[i] > max:
-        max_islands = []
-        max_islands.append(islands[i])
-        max = vendas[i]
-    elif vendas[i] == max:
-        max_islands.append(islands[i])
-
-print(f"Ilha(s) com mais vendas: {max_islands} com {max} vendas")
-
-
 #Acima da média
 above_average_islands = []
 for i in range(len(vendas)):
@@ -52,21 +38,45 @@ for i in range(len(vendas)):
 
 print(f"Ilha(s) abaixo da média de vendas: {below_average_islands}")
 
-
-
-#Ordenar islhas por vendas de forma crescente
-for i in range(len(islands)):
-    for i in range(len(islands)-i-1):
-        if i+1 < len(islands):
-            if(vendas[i] > vendas[i+1]):
+def order_double_list(islands,vendas, ordem=1):
+    #Ordenar ilhas por vendas de forma crescente
+    sorting_done = False
+    while sorting_done == False:
+        sorting_done = True
+        for i in range(len(islands)-1):
+            if(vendas[i] > vendas[i+1] if ordem == 1 else vendas[i] < vendas[i+1]):
                 vendas[i], vendas[i+1] = vendas[i+1], vendas[i]
                 islands[i], islands[i+1] = islands[i+1], islands[i]
+                sorting_done = False
 
+    return islands, vendas
+
+islands, vendas = order_double_list(islands,vendas)
+
+print(f"\nIlhas com mais vendas:")
+for i in range(len(vendas)):
+    if(vendas[len(vendas)-i-1] == vendas[len(vendas)-1]):
+        print(islands[len(vendas)-i-1] + " ")
+    else:
+        print(f"com {vendas[len(vendas)-1]}")
+        break
+
+print(f"\nIlhas com menos vendas:")
+for i in range(len(vendas)):
+    if(vendas[i] == vendas[0]):
+        print(islands[i] + " ")
+    else:
+        print(f"com {vendas[0]}")
+        break
+
+
+#Apresenta as vendas das ilhas de forma crescente ao ler a lista em ordem
 print("\n")
 print("Crescente:")
 for i in range(len(vendas)):
     print(f"{islands[i]} com {vendas[i]}")
 
+#Apresenta as vendas das ilhas de forma decrescente ao ler a lista em ordem inversa
 print("\n")
 print("Decrescente:")
 for i in range(len(vendas)):
