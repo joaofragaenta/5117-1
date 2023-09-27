@@ -12,5 +12,3 @@ while y < len(semanas):
         print(f"Semana {semanas[y]} - {dias[x]}")
         x += 1
     y += 1
-#for x in range(len(dias)):
-#    print(dias[x])

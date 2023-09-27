@@ -2,4 +2,4 @@
 O meu belo programa
 """
 
-print("Hello")
+print("Hello World")
