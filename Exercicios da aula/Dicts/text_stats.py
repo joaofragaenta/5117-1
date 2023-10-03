@@ -29,5 +29,35 @@ for i in letter_occurence:
             highest_key = x
     sorted_dict[highest_key] = highest_value
     keys_to_ignore.append(highest_key)
-
+print("------------------")
+print("Quantas vezes aparece cada letra do maior para menor, utilizando um segundo dict?")
 print(sorted_dict)
+
+#[2 listas] Quantas vezes aparece cada letra do maior para menor?
+
+letters = letter_occurence.keys()
+occurences = letter_occurence.values()
+
+while swapped == True:
+    swapped = False
+    if occurences[i] > occurences[i+1]:
+        temp_occurence = occurences[i]
+        temp_letter = letters[i]
+        occurences[i] = occurences[i+1]
+        letters[i] = letters[i+1]
+        occurences[i+1] = temp_occurence
+        letters[i+1] = temp_letter
+        swapped = True
+
+print("------------------")
+print("Quantas vezes do maior para o menor, utilizando .keys() e .values()")
+for i in range(len(letter_occurence)):
+    print(f"{letters[i]}:{occurences[i]}")
+
+#[lambda] Quantas vezes aparece cada letra do maior para menor?
+
+sorted_dict = sorted(letter_occurence, reverse= True, key= lambda letter : letter_occurence[letter])
+print("------------------")
+print("Quantas vezes do maior para o menor, utilizando .sorted() e lambda")
+for i in sorted_dict:
+    print(f"{i}: {letter_occurence[i]}")
